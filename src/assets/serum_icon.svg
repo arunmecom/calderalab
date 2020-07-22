@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="95px" viewBox="0 0 66 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>serum icon</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="How-to-Use-Desktop-2" transform="translate(-534.000000, -858.000000)">
+            <g id="SECTION-1" transform="translate(-8.000000, 756.000000)">
+                <g id="icons-+-copy" transform="translate(98.000000, 102.000000)">
+                    <g id="serum" transform="translate(333.000000, 0.000000)">
+                        <g id="serum-icon" transform="translate(112.000000, 0.000000)">
+                            <g id="2" transform="translate(23.000000, 0.000000)">
+                                <circle id="Oval" fill="#B9680C" cx="21" cy="21" r="21"></circle>
+                                <text font-family="Helvetica" font-size="16" font-weight="normal" line-spacing="16" fill="#FFFFFF">
+                                    <tspan x="5" y="29">2</tspan>
+                                </text>
+                            </g>
+                            <g transform="translate(0.000000, 13.000000)">
+                                <rect id="Rectangle-Copy-4" stroke="#3D3D38" fill="#F7F6F3" x="0" y="4" width="31.3875" height="77"></rect>
+                                <rect id="Rectangle-Copy-6" stroke="#3D3D38" fill="#F7F6F3" x="0" y="4" width="31.3875" height="18"></rect>
+                                <path d="M15.69375,0 C22.0450246,0 27.19375,1.790861 27.19375,4 L27.19375,4 L4.19375,4 C4.19375,1.790861 9.34247538,0 15.69375,0 Z" id="Combined-Shape" fill="#3D3D38"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
