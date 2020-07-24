@@ -12,7 +12,7 @@
 {%- endcomment -%}
 <section data-section-id="{{ section.id }}" data-section-type="header">
   {%- if section.settings.announcement_bar_enabled -%}
-    <div>
+    <div class="announcement-bar">
       {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
         {%- if section.settings.announcement_bar_link != blank -%}
           <a href="{{ section.settings.announcement_bar_link }}">
@@ -25,13 +25,25 @@
     </div>
   {%- endif -%}
 
-  <header role="banner">
+  <header role="banner" class="main-header" id="header">
+  <div class="mobile-container desktop-hide">
+    <div class="topnav">
+      <div id="myLinks">
+        <a href="#">Shop</a>
+        <a href="#">How to use</a>
+        <a href="#">About</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <img src="{{ "hamburger.svg" | asset_url }}">
+      </a>
+    </div>
+  </div>
     {% if template.name == 'index' %}
-      <h1>
+      <h1 class="logo-title">
     {% else %}
       <div class="h1">
     {% endif %}
-        <a href="/" class="logo-image">
+        <a href="/" class="logo-image mobile-hide">
           {% if section.settings.logo != blank %}
             {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
             <img src="{{ section.settings.logo | img_url: image_size }}"
@@ -41,18 +53,48 @@
             {{ shop.name }}
           {% endif %}
         </a>
+        <a href="#" class="desktop-hide">
+          <img src="{{ "logo-mobile.png" | asset_url }}" alt="">
+        </a>
     {% if template.name == 'index' %}
       </h1>
     {% else %}
       </div>
     {% endif %}
-
-    <a href="/cart">
-      {% include 'icon-cart' %}
-      {{ 'layout.cart.title' | t }}
-      ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
-    </a>
-
+<nav role="navigation" class="mobile-hide">
+    <ul>
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.links != blank %}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.title }}
+              {% include 'icon-arrow-down' %}
+              <span class="link-underline"></span>
+            </a>
+            <ul>
+              {% for childlink in link.links %}
+                <li>
+                  <a href="{{ childlink.url }}">
+                    {{ childlink.title }}
+                    <span class="link-underline"></span>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.title }}
+              <span class="link-underline"></span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+    
+    <div class="account-cart">
     {% if shop.customer_accounts_enabled %}
       <ul>
         {% if customer %}
@@ -71,14 +113,23 @@
           <li>
             {{ 'layout.customer.log_in' | t | customer_login_link }}
           </li>
-          <li>
+          {% comment %} <li>
             {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
+          </li> {% endcomment %}
         {% endif %}
       </ul>
     {% endif %}
-
-    <form action="/search" method="get" role="search">
+     <a href="/cart">
+      <div class="mobile-hide">
+        {% include 'icon-cart' %}
+      </div>
+      <img src="{{"cart-mobile.svg" | asset_url }}" alt="" class="desktop-hide">
+     
+      {% comment %} {{ 'layout.cart.title' | t }}
+      ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }}) {% endcomment %}
+    </a>
+</div>
+    {% comment %} <form action="/search" method="get" role="search">
       <label for="Search-{{ section.id }}" class="label-hidden">
         {{ 'general.search.placeholder' | t }}
       </label>
@@ -93,38 +144,10 @@
         {% include 'icon-search' %}
         <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
       </button>
-    </form>
+    </form> {% endcomment %}
   </header>
 
-  <nav role="navigation">
-    <ul>
-      {% for link in linklists[section.settings.menu].links %}
-        {% if link.links != blank %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-              {% include 'icon-arrow-down' %}
-            </a>
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}">
-                    {{ childlink.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </nav>
+  
 </section>
 
 {% if section.settings.logo != blank %}
@@ -134,104 +157,100 @@
       max-width: {{ section.settings.logo_max_width }}px;
     }
   </style>
+  <script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
 {% endif %}
 
 {% schema %}
-  {
+
+{
     "name": "Header",
     "settings": [
-      {
-        "type": "header",
-        "content": "Announcement bar"
-      },
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_enabled",
-        "label": "Show announcement",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_home_page_only",
-        "label": "Show on home page only",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "announcement_bar_text",
-        "label": "Announcement text",
-        "default": "Announce something here"
-      },
-      {
-        "type": "url",
-        "id": "announcement_bar_link",
-        "label": "Announcement link",
-        "info": "Optional"
-      },
-      {
-        "type": "header",
-        "content": "Header"
-      },
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
-        "type": "range",
-        "id": "logo_max_width",
-        "min": 50,
-        "max": 450,
-        "step": 10,
-        "unit": "px",
-        "label": "Custom logo width",
-        "default": 250
-      },
-      {
-        "type": "link_list",
-        "id": "menu",
-        "label": "Menu",
-        "default": "main-menu"
-      }
+        {
+            "type": "header",
+            "content": "Announcement bar"
+        }, {
+            "type": "checkbox",
+            "id": "announcement_bar_enabled",
+            "label": "Show announcement",
+            "default": false
+        }, {
+            "type": "checkbox",
+            "id": "announcement_bar_home_page_only",
+            "label": "Show on home page only",
+            "default": true
+        }, {
+            "type": "text",
+            "id": "announcement_bar_text",
+            "label": "Announcement text",
+            "default": "Announce something here"
+        }, {
+            "type": "url",
+            "id": "announcement_bar_link",
+            "label": "Announcement link",
+            "info": "Optional"
+        }, {
+            "type": "header",
+            "content": "Header"
+        }, {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo image"
+        }, {
+            "type": "range",
+            "id": "logo_max_width",
+            "min": 50,
+            "max": 450,
+            "step": 10,
+            "unit": "px",
+            "label": "Custom logo width",
+            "default": 250
+        }, {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu",
+            "default": "main-menu"
+        }
     ]
-  }
+}
+
 {% endschema %}
 
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "{{ shop.name }}",
-  {% if section.settings.logo %}
-    {% assign image_size = section.settings.logo.width | append:'x' %}
-    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
-  {% endif %}
-  "sameAs": [
-    "{{ settings.social_twitter_link }}",
-    "{{ settings.social_facebook_link }}",
-    "{{ settings.social_pinterest_link }}",
-    "{{ settings.social_instagram_link }}",
-    "{{ settings.social_tumblr_link }}",
-    "{{ settings.social_snapchat_link }}",
-    "{{ settings.social_youtube_link }}",
-    "{{ settings.social_vimeo_link }}"
-  ],
-  "url": "{{ shop.url }}{{ page.url }}"
-}
+
+
+[36mLine: 2[0m
+[31m(empty line)[0m
+[31m(empty line)[0m
+[31m[36mLine: 1[0m[0m
+[31m[31m[36 mLine : 1 [[0m[0m
+[31m[31m        0 m [[0m[0m
+[31m[31m            31 m[[0m[0m
+[31m[31m                36 mLine : 2 [[0m[0m
+
 </script>
 
 {% if template.name == 'index' %}
   <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "{{ shop.name }}",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "{{ shop.url }}/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      },
-      "url": "{{ shop.url }}{{ page.url }}"
-    }
-  </script>
+
+
+[36mLine: 1[0m
+[31m[36 mLine : 1 [[0m
+[31m        0 m [[0m
+[31m            31 m[[0m
+[31m                36 mLine : 2 [[0m
+[31m                    [[0m
+[31m                        0 m [[0m
+[31m                            31 m 0 m [[0m
+
+</script>
 {% endif %}

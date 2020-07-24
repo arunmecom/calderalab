@@ -1,0 +1,195 @@
+main#MainContent {
+    padding-top: 107px;
+
+    @media (max-width: $mobile) {
+        padding-top: 0px;
+    }
+}
+
+.header-bg {
+    background-color: $color-primary !important;
+}
+
+.announcement-bar {
+    background-color: $color-primary;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    @media (max-width: $mobile) {
+        background: transparent;
+
+    }
+
+    p {
+        margin: 0;
+
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        color: #fff;
+        text-decoration: none;
+        font-size: .8em;
+        letter-spacing: 1px;
+        font-weight: 300;
+        font-family: AvenirLT Pro;
+
+
+    }
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    position: fixed;
+    width: 100%;
+    top: 37px;
+    /* z-index: 00000000; */
+    background: #fff;
+    left: 0;
+    right: 0;
+    z-index: 99;
+
+    @media (max-width: $mobile) {
+        background: transparent;
+        padding: 0 20px;
+    }
+
+
+    .logo-title,
+    nav,
+    .account-cart {
+        width: 33.3%
+    }
+
+
+
+    .logo-image {
+        color: $color-primary
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    nav {
+        text-align: center;
+
+
+
+
+        ul {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            justify-content: center;
+
+            li {
+                padding: 20px;
+
+                a {
+                    color: $color-primary;
+                    font-family: AvenirLT Pro;
+                    font-weight: 600;
+                    letter-spacing: 2px;
+                    font-size: .75em;
+                    position: relative;
+                    text-decoration: none;
+                    text-transform: uppercase;
+
+                    & span {
+                        content: "";
+                        width: 20px;
+                        height: 2px;
+                        position: absolute;
+                        bottom: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #b9680c;
+                        top: 20px;
+                        visibility: hidden;
+                        opacity: 0;
+                    }
+
+                    &:hover span {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    .account-cart {
+        display: flex;
+        align-items: center;
+        color: $color-primary;
+        justify-content: flex-end;
+
+        a {
+            color: $color-primary;
+            margin-left: 25px;
+            text-decoration: none;
+            text-transform: none;
+
+        }
+
+        #customer_login_link {
+            @media (max-width: $mobile) {
+                display: none;
+            }
+        }
+    }
+}
+
+.mobile-container {
+    width: 33.3%;
+
+    .topnav {
+        position: relative;
+    }
+
+    .topnav #myLinks {
+        display: none;
+        width: 100%;
+        background: rgb(255, 255, 255);
+        position: fixed;
+        top: 110px;
+        left: 0px;
+        padding: 20px;
+
+    }
+
+    .topnav a {
+        display: block;
+        color: $color-primary;
+        font-family: AvenirLT Pro;
+        font-weight: 600;
+        letter-spacing: 2px;
+        font-size: .75em;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .topnav a.icon {
+        display: block;
+        position: absolute;
+    }
+
+
+
+    .active {}
+}

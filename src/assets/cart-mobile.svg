@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>cart</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="How-to-Use-Mobile" transform="translate(-347.000000, -42.000000)" fill="#FFFFFF">
+            <g id="HERO" transform="translate(-583.000000, 0.000000)">
+                <g id="navigation" transform="translate(598.000000, 42.000000)">
+                    <path d="M336,4.22222222 C336.100503,0.678501607 339.276382,-0.62824537 340,4.22222222 L336,4.22222222 Z M341.678832,4.76295599 C340.956204,-1.4380487 335.109489,-1.73551386 334.321168,4.76295599 L332.678832,4.76295599 L332,15.8104514 L344,15.8333333 L343.29927,4.76295599 L341.678832,4.76295599 Z" id="cart"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

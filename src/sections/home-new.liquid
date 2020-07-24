@@ -272,3 +272,52 @@
         <img alt="" src="">
     </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Home New",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Banner"
+        },
+         {
+           "type": "text",
+           "id": "banner_title",
+           "label": "Banner title",
+           "default": "",
+           "info": "",
+           "placeholder": ""
+         },
+         {
+           "type": "text",
+           "id": "banner_subtitle",
+           "label": "banner Subtitle",
+           "default": "",
+           "info": "",
+           "placeholder": ""
+         },
+         {
+           "type": "textarea",
+           "id": "banner_para",
+           "label": "banner Pragraph",
+           "default": "",
+           "info": "",
+           "placeholder": ""
+         },
+         {
+           "type": "image_picker",
+           "id": "Banner_img",
+           "label": ""
+         },
+        
+    ],
+    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,5 +1,8 @@
 // Text colors
 $color-body-text: var(--color-body-text);
+$color-primary: #3d3d38;
+$color-secondary: #b9680c;
+$color-white: #f7f6f3;
 
 // Background colors
 $color-body: var(--color-main-background);
@@ -48,8 +51,7 @@ $large-down: 'large-down';
 $large-up: 'large-up';
 $widescreen: 'widescreen';
 
-$breakpoints: (
-  $small '(max-width: #{$grid-medium - 1})',
+$breakpoints: ($small '(max-width: #{$grid-medium - 1})',
   $medium '(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})',
   $medium-down '(max-width: #{$grid-large - 1})',
   $medium-up '(min-width: #{$grid-medium})',
@@ -58,3 +60,7 @@ $breakpoints: (
   $large-up '(min-width: #{$grid-large})',
   $widescreen '(min-width: #{$grid-widescreen})'
 );
+
+// My custom breakpoint
+
+$mobile: '769px';
